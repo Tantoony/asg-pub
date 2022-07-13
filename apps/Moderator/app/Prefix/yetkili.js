@@ -19,13 +19,9 @@ class Upgrade extends Command {
         if (!mentioned.user.username.includes(client.config.tag)) 
         await message.reply({content: `Kullanıcıda tagımız bulunmamaktadır!`}) 
         await message.react(data.emojis["error"].split(':')[2].replace('>', ''));
-
-    
         await mentioned.roles.add("ROLID")
         await message.react(data.emojis["ok"])
-        await message.reply(new Discord.MessageEmbed()
-        .setColor("DARK_RED")
-        .setDescription(`:tada: sunucumuz bir yetkili daha kazandı ${mentioned.toString()} kullnıcısı sunucumuzun yeni yetkilisi!`))
+        await message.reply(new Discord.MessageEmbed().setColor("DARK_RED").setDescription(`:tada: sunucumuz bir yetkili daha kazandı ${mentioned.toString()} kullnıcısı sunucumuzun yeni yetkilisi!`))
         client.channels.cache.find(data.channels["ytlog"]).send(new Discord.MessageEmbed().setColor("GREEN").setDescription(`${message.author} yetkilisi ${mentioned} kullanıcısını sunucumuzda yetkili yaptı :partying_face: `))
       }
 }

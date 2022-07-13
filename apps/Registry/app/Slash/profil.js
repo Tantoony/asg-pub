@@ -1,5 +1,4 @@
 const { SlashCommand, CommandOptionType } = require('slash-create');
-const low = require('lowdb');
 const Discord = require('discord.js');
 const { stripIndent } = require('common-tags');
 const { rain, checkDays } = require('../../../../../HELPERS/functions');
@@ -31,9 +30,6 @@ module.exports = class AvatarCommand extends SlashCommand {
 
     async run(ctx) {
         const client = ctx.creator.client;
-        const utils = await low(client.adapters('utils'));
-        const roles = await low(client.adapters('roles'));
-        const channels = await low(client.adapters('channels'));
         const userID = Object.values(ctx.options)[0] || ctx.member.user.id;
         const mentioned = client.guilds.cache.get(ctx.guildID).members.cache.get(userID);
         const emojis = await low(client.adapters('emojis'));

@@ -13,37 +13,66 @@ class Yardım extends PrefixCommand {
     }
 
     async run(client, message, args) {
-        const prx = client.config.prefix;
-        const commands = client.responders.filter(cmd => cmd.config && cmd.config.enabled)
-        const emb = new Discord.MessageEmbed();
-        const embed = new Discord.MessageEmbed().setFooter("Detaylı bilgi için .yardım <komut adı>");
-        const embedfst = new Discord.MessageEmbed()
-            .addField(".yardım moderasyon", "Moderasyon komutlarını gösterir")
-            .addField(".yardım düzen", "Düzenleme komutlarını gösterir")
-            .addField(".yardım genel", "Genel komutları gösterir")
-            .addField(".yardım sorgu", "Sorgu komutları gösterir")
-            .addField(".yardım stats", "Stat komutları gösterir")
-            .addField(".yardım kayıt", "Kayıt komutlarını gösterir");
-        if (!args[0]) return message.reply({ embeds: [embedfst] })
-        let cmd = commands.get(`prefix:` + args[0]);
-        if (!cmd) {
-            commands.filter(cmdz => cmdz.info.category.toLowerCase() == args[0].toLowerCase()).forEach(async (command) => {
-                embed.addField(prx + command.info.name, command.info.description, true);
-            });
-            message.reply({ embeds: [embed.setTitle(args[0].toUpperCase() + " KOMUTLARI")] });
-        } else {
-            let acceptedroles = cmd.info.accaptedPerms.filter(rolename => message.guild.roles.cache.get(client.data.roles[rolename])).map(rolename => message.guild.roles.cache.get(client.data.roles[rolename]));
-            if (acceptedroles.length < 1) acceptedroles = ["\`-Genel Komut-\`"];
-            emb.setDescription(cmd.info.description);
-            emb.setTitle(cmd.info.name.toUpperCase() + " Komut Bilgisi");
-            emb.addField("Kullanım:", prx + cmd.info.usage);
-            emb.addField("Örnekler:", cmd.info.examples.map(e => prx + e).join('\n'));
-            emb.addField("Kategori", cmd.info.category);
-            emb.addField("Süresi:", cmd.info.cooldown / 1000 + " Saniye");
-            emb.addField("Kullanabilen Roller:", acceptedroles.join('\n'));
-            message.reply({ embeds: [emb] });
+    let embed = new MessageEmbed().setColor("DARK_RED").setDescription(`
+    • .afk
+    • .avatar
+    • .cihaz
+    • .banlist
+    • .cmute
+    • .vmute
+    • .cunmute
+    • .vunmute
+    • .forcegit
+    • .forcecek
+    • .gorev
+    • .invite
+    • .link
+    • .kullanicibilgi
+    • .menu
+    • .panel
+    • .pm2 
+    • .pull
+    • .reboot
+    • .say
+    • .serverinfo
+    • .ses
+    • .sesli
+    • .sessay
+    • .slowmode
+    • .snipe
+    • .stat
+    • .sunucuinfo
+    • .suspectac
+    • .svkontrol
+    • .tasksec
+    • .temizle
+    • .unjail
+    • .yetenek
+    • .yetkili
+    • .ysay 
+    • .ban
+    • .jail
+    • .kayit
+    • .mute
+    • .rol
+    • .userinfo
+    • .kayitsil
+    • .cekilis
+    • .etkinlik
+    • .hobi
+    • .katılımcı
+    • .oyun
+    • .renkler
+    • .danisma
+    • .menu`)
+    
+
+    message.reply({embeds: [embed]})
+        
+
+
         }
     }
-}
+
 
 module.exports = Yardım;

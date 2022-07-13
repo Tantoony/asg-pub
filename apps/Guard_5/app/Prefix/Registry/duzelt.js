@@ -52,13 +52,6 @@ class Duzelt extends Command {
             }
         }
 
-
-
-
-
-
-
-
         // if (adana == "isim") {
         //     const rawName = args[2]
         //     let adana = rawName.charAt(0).toUpperCase() + rawName.slice(1).toLowerCase()

@@ -18,7 +18,7 @@ class Yetenek extends Command {
     async run(client, message, args, data) {
         if (!message.member.roles.cache.some(ktria => [""].includes(ktria.id)) && !message.member.permissions.has("ADMINISTATOR")) return;
         const mentioned = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-        if(!mentioned) return message.reply({content: `${message.author} yetenek permi verebilmek için big kullanıcı belirtmelisiniz!`})
+        if(!mentioned) return message.reply({content: `${message.author} yetenek permi verebilmek için bi kullanıcı belirtmelisiniz!`})
         let embeddesigner = new MessageEmbed().setColor("RANDOM").setDescription(`${mentioned} kullanıcısına **designer** permi başarıyla verildi!`)
         let embeddj = new MessageEmbed().setColor("RANDOM").setDescription(`${mentioned} kullanıcısına **dj** permi başarıyla verildi!`)
         let embededitor = new MessageEmbed().setColor("RANDOM").setDescription(`${mentioned} kullanıcısına **editör** permi başarıyla verildi!`)
@@ -70,7 +70,7 @@ class Yetenek extends Command {
 
 
         if(yetenekcim == "ressam") { if (!mentioned) message.react(data.emojis["error"]) ;
-        mentioned.roleas.add(data.roles["role_ressan"]);
+        mentioned.roleas.add(data.roles["role_ressam"]);
         message.reply({embeds: [embedressam]})} else {
 
         mentioned.roles.remove(data.roles["role_ressam"]);
